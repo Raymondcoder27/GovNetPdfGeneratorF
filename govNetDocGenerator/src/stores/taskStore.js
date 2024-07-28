@@ -42,23 +42,23 @@ export const useTaskStore = defineStore('taskStore', {
     //   }
     // },
 
-    async uploadData(file, jsonData) {
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("data", jsonData);
+    // async uploadData(file, jsonData) {
+    //   const formData = new FormData();
+    //   formData.append("file", file);
+    //   formData.append("data", jsonData);
 
-      try {
-        const response = await fetch("http://localhost:8080/generate", {
-          method: "POST",
-          body: formData,
-        });
+    //   try {
+    //     const response = await fetch("http://localhost:8080/generate", {
+    //       method: "POST",
+    //       body: formData,
+    //     });
 
-        const result = await response.json();
-        console.log(result);
-      } catch (error) {
-        console.error("Error uploading data:", error);
-      }
-    }
+    //     const result = await response.json();
+    //     console.log(result);
+    //   } catch (error) {
+    //     console.error("Error uploading data:", error);
+    //   }
+    // }
   },
     // async addTask(task) {
     // this.tasks.push(task)

@@ -18,7 +18,7 @@
     <div class="upload">
       <div class="template">
         <h3>Upload Template File</h3>
-        <input type="file" ref="file" placeholder="Template File" v-autofocus />
+        <input type="file" ref="file" name="file" placeholder="Template File" />
       </div>
       <br />
       <br />
@@ -72,6 +72,7 @@
 
 <script setup>
 //  import Counter from '@/components/Counter.vue';
+import axios from 'axios';
 import NewTask from "@/components/NewTask.vue";
 import TaskDetails from "@/components/TaskDetails.vue";
 import { useTaskStore } from "@/stores/taskStore";
@@ -81,15 +82,31 @@ const taskStore = useTaskStore();
 const filter = ref("all");
 const jsonInput = ref('')
 
-const dataUpload = () => {
+const dataUpload = async () => {
   const fileInput = document.querySelector('input[type="file"]');
   const file = fileInput.files[0];
 
-  if (file) {
-    taskStore.uploadData(file, jsonInput.value);
+  if (!file) {
+    console.error("No file selected");
+    return;
   }
 
-};
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("data", jsonInput.value);
+
+  try {
+      const response = await axios.post("http://localhost:8080/generate", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error uploading data:", error.response ? error.response.data : error.message);
+    }
+  };
 </script>
 
 <style scoped>
@@ -98,9 +115,7 @@ main {
   justify-content: center;
   align-items: center;
 }
-ul {
-  /* display: none; */
-}
+
 main .upload .form {
   width: 200px;
 }
