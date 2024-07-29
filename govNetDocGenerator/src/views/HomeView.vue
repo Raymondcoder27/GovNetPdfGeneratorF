@@ -1,23 +1,10 @@
 <template>
   <main>
-    <!-- <header class="header2">
-    <div class="new-task">
-      <NewTask />
-    </div>
-   </header> -->
-
-    <!-- <nav class="filter">
-      <button @click="filter = 'all'">Data Upload</button>
-      <button @click="filter = 'favs'">Generated PDF files</button>
-    </nav> -->
-
-    <br />
-    <br />
     <!-- <div class="data"> -->
     <form class="dataUploadForm" @submit.prevent="dataUpload">
       <div class="upload">
         <div class="template">
-          <h3>Upload Template File</h3>
+          <h4>Upload Template File</h4>
           <input
             type="file"
             ref="file"
@@ -28,7 +15,7 @@
         <br />
         <br />
         <div class="json">
-          <h3>Insert JSON Data</h3>
+          <h4>Insert JSON Data</h4>
           <!-- <input type=" " placeholder="Insert Json"> -->
           <!-- <form class="form" @submit.prevent="handleSubmit"> -->
           <textarea

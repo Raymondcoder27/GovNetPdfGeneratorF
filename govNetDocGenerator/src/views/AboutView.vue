@@ -13,10 +13,12 @@
               placeholder="Enter JSON data"
             ></textarea>
           </div>
-          <button class="submitt" @click="dataUpload">
+          <br>
+          
+        </div>
+        <button class="submitt" @click="dataUpload">
             Upload
           </button>
-        </div>
         <!-- Preview PDF and download link -->
         <div v-if="pdfUrl">
           <iframe :src="pdfUrl" width="600" height="800"></iframe>

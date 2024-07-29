@@ -5,12 +5,7 @@
       <img alt="Vue logo" class="logo" src="@/assets/logo.png" />
     <h3 class="title">Document Generator</h3>
     </div>
-    <br>
-    <!-- <div class="wrapper">
-      <nav class="filter">
-      <button @click="filter = 'all'">Data Upload</button>
-      <button @click="filter = 'favs'">Generated PDF files</button>
-    </nav> -->
+
       <nav class="filter">
         <RouterLink to="/"><button>Home</button></RouterLink>
         <RouterLink to="/about"><button>Test</button></RouterLink>
