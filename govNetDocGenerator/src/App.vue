@@ -8,18 +8,11 @@
     <img alt="Vue logo" class="logo" src="@/assets/logo.png" />
     <nav class="filter">
       <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/about">Test</RouterLink>
+      <RouterLink to="/data-upload">Data Upload</RouterLink>
       <RouterLink to="/generated-files">Generated Files</RouterLink>
     </nav>
   </div>
 </header>
-
-
-
-
-
-  
-
   <RouterView />
 </div>
   

@@ -19,13 +19,16 @@
         <button class="submitt" @click="dataUpload">
             Upload
           </button>
-        <!-- Preview PDF and download link -->
-        <div v-if="pdfUrl" class="pdfPreview">
-          <h4>PREVIEW</h4>
-          <div class="pdf-container">
-          <iframe :src="pdfUrl" width="600" height="800"></iframe>
+          <!-- Toggle Preview Button -->
+        <button v-if="pdfUrl" @click="togglePreview">
+          {{ showPreview ? 'Close Preview' : 'Show Preview' }}
+        </button>
+         <!-- Preview PDF and download link -->
+         <div v-if="showPreview" class="pdfPreview">
+          <div class="pdfContainer">
+            <iframe :src="pdfUrl" frameborder="0"></iframe>
           </div>
-          <a :href="pdfUrl" download="document.pdf" class="download">Download PDF</a>
+          <a :href="pdfUrl" download="document.pdf">Download PDF</a>
         </div>
       </div>
     </div>
@@ -35,6 +38,7 @@
 <script setup>
 import { ref } from "vue";
 import { useTaskStore } from "@/stores/taskStore";
+const showPreview = ref(false); // State to track visibility of the preview
 
 const taskStore = useTaskStore();
 const jsonInput = ref("");
@@ -82,6 +86,10 @@ async function dataUpload() {
     console.error("No file selected");
   }
 }
+
+function togglePreview() {
+  showPreview.value = !showPreview.value; // Toggle the preview visibility
+}
 </script>
 
 <style scoped>
@@ -103,12 +111,17 @@ main {
   margin-top: 20px;
 }
 
+/* .previews{
+  display: flex;
+  text-align: center;
+} */
+
 .pdfContainer {
   position: relative;
   width: 100%;
-  max-width: 800px; /* Adjust to fit your design */
+  max-width: 600px; /* Smaller max-width for a smaller preview */
   height: 0;
-  padding-bottom: 75%; /* Adjust the aspect ratio (75% for 4:3 ratio) */
+  padding-bottom: 75%; /* Adjust to maintain aspect ratio */
 }
 
 .pdfContainer iframe {
