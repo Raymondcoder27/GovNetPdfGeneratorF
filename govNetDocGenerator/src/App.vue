@@ -1,18 +1,23 @@
 <template>
   <div>
-  <header>
-    <div class="heading">
-      <img alt="Vue logo" class="logo" src="@/assets/logo.png" />
-    <h3 class="title">Document Generator</h3>
-    </div>
+    <header>
+  <div class="header-content">
+    <h4 class="title">DOCUMENT GENERATOR</h4>
+  </div>
+  <div class="nav-bar">
+    <img alt="Vue logo" class="logo" src="@/assets/logo.png" />
+    <nav class="filter">
+      <RouterLink to="/">Home</RouterLink>
+      <RouterLink to="/about">Test</RouterLink>
+      <RouterLink to="/generated-files">Generated Files</RouterLink>
+    </nav>
+  </div>
+</header>
 
-      <nav class="filter">
-        <RouterLink to="/"><button>Home</button></RouterLink>
-        <RouterLink to="/about"><button>Test</button></RouterLink>
-        <RouterLink to="/generated-files"><button>Generated Files</button></RouterLink>
-      </nav>
-    <!-- </div> -->
-  </header>
+
+
+
+
   
 
   <RouterView />

@@ -5,9 +5,11 @@
       <div class="dataUploadForm">
         <div class="upload">
           <div class="template">
+            <h4>Upload Template File</h4>
             <input type="file" @change="handleFileUpload" />
           </div>
           <div class="json">
+            <h4>Insert Json data</h4>
             <textarea
               v-model="jsonInput"
               placeholder="Enter JSON data"
@@ -83,7 +85,7 @@ async function dataUpload() {
 
 <style scoped>
 main {
-  margin-top: 50px;
+  /* margin-top: 50px; */
   text-align: center;
   justify-content: center;
   align-items: center;

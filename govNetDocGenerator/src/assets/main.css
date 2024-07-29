@@ -11,7 +11,7 @@ body * {
 
 /* header */
 header {
-  text-align: center;
+  /* text-align: center; */
   background: #e7e7e7;
   /* padding-top: 20px; */
   /* display: flex; */
@@ -21,41 +21,41 @@ header {
 }
 
 header .heading{
-  /* display: flex; */
+  display: flex;
   /* padding: 0; */
-  max-width: 500px;
-  align-items: center;
+  /* max-width: 500px; */
+  /* align-items: left; */
   justify-content: center;
-  margin-left: 430px;
+  margin-right: 0px;
 }
 
 /* header .wrapper{
   display: block;
 } */
 
-header .heading img {
-  max-width: 280px;
-  margin: auto;
+ img {
+  width: 120px;
+  height: 90px;
+  /* margin-left: auto; */
+  /* margin-top: 30px; */
   /* transform: rotate(-10deg); */
 }
+
 
 header .wrapper{
   /* text-align: right; */
   background: #e7e7e7;
   /* padding-top: 20px; */
-  /* display: flex; */
-  justify-content: right;
+  display: flex;
+  /* justify-content: right; */
   /* align-items: right; */
 }
 
-header .heading h1 {
-  margin: 0;
-  font-size: 2em;
-  /* padding-top: 25px; */
-  margin: auto;
-  color: #777;
-  /* transform: rotate(2deg); */
+header .heading h3 {
+  justify-content: center;
+  /* margin: 20px; */
 }
+
 
 .task-list{
   max-width: 500px;
@@ -63,16 +63,6 @@ header .heading h1 {
   list-style: none;
 }
 
-.task{
-  padding: 6px 20px;
-  background: #fff;
-  margin-top: 20px;
-  border-radius: 4px;
-  box-shadow: 2px 4px 6px blur #000;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 
 .task h3, .task .icons{
   display: inline-block;
@@ -91,24 +81,62 @@ header .heading h1 {
 
 .task i.active{
   color: #ff005d;
+}header {
+  width: 100%;
 }
 
-/* filter nav */
-.filter {
-  width: 500px;
-  margin: 10px auto;
+.header-content {
+  background-color: #006FFF;
+  padding: 10px 20px;
   text-align: center;
+}
+
+.title {
+  margin: 0;
+  color: white;
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ccc; /* Optional border for separation */
+  position: relative;
+}
+
+.logo {
+  height: 40px; /* Adjust as needed */
+  position: absolute;
+  left: 20px; /* Adjust based on padding */
+}
+
+.filter {
+  display: flex;
+  gap: 20px;
+}
+
+.filter a {
+  color: #006FFF;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.filter a:hover {
+  text-decoration: underline;
+}
+
+
+
+.filter button:hover {
+  text-decoration: underline;
 }
 
 .filter button {
   display: inline-block;
-  /* margin-left: 10px;  */
-  /* background: #fff; */
-  /* background: #ffd859; */
   background: #ffc30b;
-  /* border: 2px solid #555; */
   border-radius: 4px;
-  /* padding: 4px 8px; */
   margin-top: 0;
   border: none;
   cursor: pointer;
@@ -154,7 +182,7 @@ form input{
 
 .header2 {
   text-align: center;
-  background: #f2f2f2;
+  /* background: #f2f2f2; */
   padding-bottom: 20px;
   display: flex;
   justify-content: left;
