@@ -17,9 +17,13 @@
 
 <style scoped>
     main {
+margin-top: 30px;
   text-align: center;
   justify-content: center;
   align-items: center;
+}
+.generated-files{
+    margin-top: 30px;
 }
 input{
     border-radius: 4px;

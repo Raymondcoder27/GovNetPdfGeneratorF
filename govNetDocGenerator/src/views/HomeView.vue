@@ -21,13 +21,13 @@
           <textarea
             type="text"
             v-model="jsonInput"
-            placeholder="Insert Json"
+            placeholder="Enter JSON here..."
           ></textarea>
           <!-- </form> -->
           <br />
         </div>
       </div>
-      <button class="submitt" type="submit">Submit</button>
+      <button class="submitt" type="submit">Upload</button>
     </form>
 
     <!-- </div> -->
@@ -114,15 +114,13 @@ const dataUpload = async () => {
 
 <style scoped>
 main {
+  margin-top: 30px;
   text-align: center;
   justify-content: center;
   align-items: center;
 }
 ul{
   display: none;
-}
-main .upload .form {
-  width: 200px;
 }
 </style>
 

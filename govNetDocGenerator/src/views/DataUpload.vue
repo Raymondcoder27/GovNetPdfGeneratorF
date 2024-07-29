@@ -9,22 +9,23 @@
             <input type="file" @change="handleFileUpload" />
           </div>
           <div class="json">
-            <h4>Insert Json data</h4>
+            <h4>Insert JSON Data</h4>
             <textarea
               v-model="jsonInput"
-              placeholder="Enter JSON data"
+              placeholder="Enter JSON here..."
             ></textarea>
           </div>
-          <br>
-          
         </div>
         <button class="submitt" @click="dataUpload">
             Upload
           </button>
         <!-- Preview PDF and download link -->
-        <div v-if="pdfUrl">
+        <div v-if="pdfUrl" class="pdfPreview">
+          <h4>PREVIEW</h4>
+          <div class="pdf-container">
           <iframe :src="pdfUrl" width="600" height="800"></iframe>
-          <a :href="pdfUrl" download="document.pdf">Download PDF</a>
+          </div>
+          <a :href="pdfUrl" download="document.pdf" class="download">Download PDF</a>
         </div>
       </div>
     </div>
@@ -85,9 +86,44 @@ async function dataUpload() {
 
 <style scoped>
 main {
-  /* margin-top: 50px; */
+  margin-top: 30px;
   text-align: center;
   justify-content: center;
   align-items: center;
+}
+
+.dataUploadForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pdfPreview {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.pdfContainer {
+  position: relative;
+  width: 100%;
+  max-width: 800px; /* Adjust to fit your design */
+  height: 0;
+  padding-bottom: 75%; /* Adjust the aspect ratio (75% for 4:3 ratio) */
+}
+
+.pdfContainer iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.download{
+  background: #006FFF;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  padding: 3px;
 }
 </style>
