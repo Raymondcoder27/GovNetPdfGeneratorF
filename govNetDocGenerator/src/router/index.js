@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import DataUpload from '../views/DataUpload.vue'
 import GeneratedFiles from '../views/GeneratedFiles.vue'
+import UploadedData from '../views/UploadedData.vue'
 // import AboutView from '../views/AboutView.vue'
 
 const router = createRouter({
@@ -8,8 +9,8 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: HomeView
+      name: 'data-upload',
+      component: DataUpload
     },
     {
       path: '/generated-files',
@@ -17,12 +18,13 @@ const router = createRouter({
       component: GeneratedFiles
     },
     {
-      path: '/data-upload',
-      name: 'data-upload',
+      path: '/uploaded-data',
+      name: 'uploaded-data',
+      component: UploadedData
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/DataUpload.vue')
+      // component: () => import('../views/DataUpload.vue')
     }
   ]
 })
