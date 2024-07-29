@@ -10,7 +10,7 @@
     Add Product
   </div> --><a
           href="/add-product"
-          class="btn btn-primary btn-block text-light"
+          class="btn btn-primary btn-block text-light bg-red"
           style="font-size: 15px"
           >Add Product</a
         ><!-- <h1 class = "text-center"> Products List</h1> --><!-- <router-link to="/product-variations">Product Variations</router-link><br> -->
