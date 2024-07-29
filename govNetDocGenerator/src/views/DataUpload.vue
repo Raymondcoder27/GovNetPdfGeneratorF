@@ -19,6 +19,7 @@
         <button class="submitt" @click="dataUpload">
             Upload
           </button>
+          <br>
           <!-- Toggle Preview Button -->
         <button v-if="pdfUrl" @click="togglePreview">
           {{ showPreview ? 'Close Preview' : 'Show Preview' }}
@@ -28,7 +29,8 @@
           <div class="pdfContainer">
             <iframe :src="pdfUrl" frameborder="0"></iframe>
           </div>
-          <a :href="pdfUrl" download="document.pdf">Download PDF</a>
+          <br>
+          <a :href="pdfUrl" class="download" download="document.pdf">Download PDF</a>
         </div>
       </div>
     </div>
@@ -119,9 +121,8 @@ main {
 .pdfContainer {
   position: relative;
   width: 100%;
-  max-width: 600px; /* Smaller max-width for a smaller preview */
-  height: 0;
-  padding-bottom: 75%; /* Adjust to maintain aspect ratio */
+ width: 600px; /* Adjust this width as needed */
+  height: 700px; /* Fixed height for the preview */
 }
 
 .pdfContainer iframe {
@@ -133,10 +134,10 @@ main {
   border: none;
 }
 .download{
-  background: #006FFF;
+  background: #fa3b10;
   color: white;
   text-decoration: none;
   border-radius: 4px;
-  padding: 3px;
+  padding: 4px;
 }
 </style>
