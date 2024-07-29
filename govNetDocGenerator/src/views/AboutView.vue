@@ -1,25 +1,89 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-
-    <div class="btn">
-      <!-- <button class="btn" @click="storeCounter.increament">{{ storeCounter.count }}</button> -->
+  <main>
+    <div>
+      <!-- Form to upload file and JSON data -->
+      <div class="dataUploadForm">
+        <div class="upload">
+          <div class="template">
+            <input type="file" @change="handleFileUpload" />
+          </div>
+          <div class="json">
+            <textarea
+              v-model="jsonInput"
+              placeholder="Enter JSON data"
+            ></textarea>
+          </div>
+          <button class="submitt" @click="dataUpload">
+            Upload
+          </button>
+        </div>
+        <!-- Preview PDF and download link -->
+        <div v-if="pdfUrl">
+          <iframe :src="pdfUrl" width="600" height="800"></iframe>
+          <a :href="pdfUrl" download="document.pdf">Download PDF</a>
+        </div>
+      </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script setup>
-  import { useTaskStore } from '@/stores/taskStore';
-   
-  const storeTask = useTaskStore()
+import { ref } from "vue";
+import { useTaskStore } from "@/stores/taskStore";
+
+const taskStore = useTaskStore();
+const jsonInput = ref("");
+const file = ref(null);
+const pdfUrl = ref(null);
+
+function handleFileUpload(event) {
+  file.value = event.target.files[0];
+}
+
+async function dataUpload() {
+  if (file.value) {
+    try {
+      const formData = new FormData();
+      formData.append("file", file.value);
+      formData.append("data", jsonInput.value);
+
+      const response = await fetch("http://localhost:8080/generate", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json();
+      const base64String = data.pdf;
+
+      // Convert base64 to a Blob
+      const byteCharacters = atob(base64String);
+      const byteNumbers = new Array(byteCharacters.length);
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      const blob = new Blob([byteArray], { type: "application/pdf" });
+
+      // Create a URL for the Blob and set it to pdfUrl
+      pdfUrl.value = URL.createObjectURL(blob);
+    } catch (error) {
+      console.error("Error uploading data:", error);
+    }
+  } else {
+    console.error("No file selected");
+  }
+}
 </script>
 
 <style scoped>
-  .about {
-    text-align: center;
-  }
-    .btn{
-    font-size: 30px;
-    padding: 10px;
-  }
-  </style>
+main {
+  margin-top: 50px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+</style>

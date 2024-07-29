@@ -1,9 +1,9 @@
-<template>
+ <template>
     <div>
       <!-- Form to upload file and JSON data -->
       <input type="file" @change="handleFileUpload" />
       <textarea v-model="jsonInput" placeholder="Enter JSON data"></textarea>
-      <button @click="dataUpload">Upload and Generate PDF</button>
+      <button @click="dataUpload">Uploa</button>
   
       <!-- Preview PDF and download link -->
       <div v-if="pdfUrl">
@@ -64,4 +64,4 @@
     }
   }
   </script>
-  
+   -->

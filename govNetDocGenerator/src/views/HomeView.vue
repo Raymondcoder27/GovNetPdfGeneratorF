@@ -4,35 +4,44 @@
     <div class="new-task">
       <NewTask />
     </div>
-  </header> -->
+   </header> -->
 
-    <nav class="filter">
+    <!-- <nav class="filter">
       <button @click="filter = 'all'">Data Upload</button>
       <button @click="filter = 'favs'">Generated PDF files</button>
-    </nav>
+    </nav> -->
 
     <br />
     <br />
     <!-- <div class="data"> -->
     <form class="dataUploadForm" @submit.prevent="dataUpload">
-    <div class="upload">
-      <div class="template">
-        <h3>Upload Template File</h3>
-        <input type="file" ref="file" name="file" placeholder="Template File" />
-      </div>
-      <br />
-      <br />
-      <div class="json">
-        <h3>Insert JSON Data</h3>
-        <!-- <input type=" " placeholder="Insert Json"> -->
-        <!-- <form class="form" @submit.prevent="handleSubmit"> -->
-          <input type="text" v-model="jsonInput" placeholder="Insert Json" />
-        <!-- </form> -->
+      <div class="upload">
+        <div class="template">
+          <h3>Upload Template File</h3>
+          <input
+            type="file"
+            ref="file"
+            name="file"
+            placeholder="Template File"
+          />
+        </div>
         <br />
+        <br />
+        <div class="json">
+          <h3>Insert JSON Data</h3>
+          <!-- <input type=" " placeholder="Insert Json"> -->
+          <!-- <form class="form" @submit.prevent="handleSubmit"> -->
+          <textarea
+            type="text"
+            v-model="jsonInput"
+            placeholder="Insert Json"
+          ></textarea>
+          <!-- </form> -->
+          <br />
+        </div>
       </div>
-    </div>
-    <button class="submitt" type="submit">Submit</button>
-  </form>
+      <button class="submitt" type="submit">Submit</button>
+    </form>
 
     <!-- </div> -->
     <br />
@@ -72,15 +81,15 @@
 
 <script setup>
 //  import Counter from '@/components/Counter.vue';
-import axios from 'axios';
-import NewTask from "@/components/NewTask.vue";
+import axios from "axios";
+// import NewTask from "@/components/NewTask.vue";
 import TaskDetails from "@/components/TaskDetails.vue";
 import { useTaskStore } from "@/stores/taskStore";
 import { ref } from "vue";
 
 const taskStore = useTaskStore();
 const filter = ref("all");
-const jsonInput = ref('')
+const jsonInput = ref("");
 
 const dataUpload = async () => {
   const fileInput = document.querySelector('input[type="file"]');
@@ -96,17 +105,24 @@ const dataUpload = async () => {
   formData.append("data", jsonInput.value);
 
   try {
-      const response = await axios.post("http://localhost:8080/generate", formData, {
+    const response = await axios.post(
+      "http://localhost:8080/generate",
+      formData,
+      {
         headers: {
           "Content-Type": "multipart/form-data",
         },
-      });
+      }
+    );
 
-      console.log(response.data);
-    } catch (error) {
-      console.error("Error uploading data:", error.response ? error.response.data : error.message);
-    }
-  };
+    console.log(response.data);
+  } catch (error) {
+    console.error(
+      "Error uploading data:",
+      error.response ? error.response.data : error.message
+    );
+  }
+};
 </script>
 
 <style scoped>
@@ -115,7 +131,9 @@ main {
   justify-content: center;
   align-items: center;
 }
-
+ul{
+  display: none;
+}
 main .upload .form {
   width: 200px;
 }

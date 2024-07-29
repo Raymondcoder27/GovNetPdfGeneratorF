@@ -11,9 +11,10 @@
       <button @click="filter = 'all'">Data Upload</button>
       <button @click="filter = 'favs'">Generated PDF files</button>
     </nav> -->
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/test">Test</RouterLink>
+      <nav class="filter">
+        <RouterLink to="/"><button>Home</button></RouterLink>
+        <RouterLink to="/about"><button>Test</button></RouterLink>
+        <RouterLink to="/generated-files"><button>Generated Files</button></RouterLink>
       </nav>
     <!-- </div> -->
   </header>
