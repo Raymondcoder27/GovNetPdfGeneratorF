@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import DataUpload from '../views/DataUpload.vue'
 import GeneratedFiles from '../views/GeneratedFiles.vue'
 import UploadedData from '../views/UploadedData.vue'
-// import AboutView from '../views/AboutView.vue'
+import HomeView from '../views/HomeView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -10,8 +10,13 @@ const router = createRouter({
     {
       path: '/',
       name: 'data-upload',
-      component: DataUpload
+      component:  DataUpload
     },
+    // {
+    //   path: '/',
+    //   name: 'data-upload',
+    //   component: DataUpload
+    // },
     {
       path: '/generated-files',
       name: 'generated-files',

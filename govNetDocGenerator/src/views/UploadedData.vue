@@ -4,28 +4,31 @@
     <!-- </div> -->
     <br />
     <br />
-    <div class="card">
-      <div class="card-body" style="font-size: 14px">
-        <!-- <div class="ms-auto btn btn-primary text-light" @click="addProduct" >
-    Add Product
-  </div> --><a
-          href="/add-product"
-          class="btn btn-primary btn-block text-light bg-red"
-          style="font-size: 15px"
-          >Add Product</a
-        ><!-- <h1 class = "text-center"> Products List</h1> --><!-- <router-link to="/product-variations">Product Variations</router-link><br> -->
-        <table class="table table-striped text-center">
-          <thead>
-            <tr>
-              <th>File Name</th>
-              <th>Reference Number</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-    </div>
+    <div class="card border rounded-lg shadow-lg">
+  <div class="card-body p-4 text-sm">
+    <table class="min-w-full divide-y divide-gray-200 bg-white table-fixed">
+      <thead class="bg-gray-100">
+        <tr>
+          <th class="px-1 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">File Name</th>
+          <th class="px-1 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Reference Number</th>
+          <th class="px-1 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+        <!-- Add some rows here to test -->
+        <tr>
+          <td class="px-1 py-4 whitespace-nowrap">Sample File</td>
+          <td class="px-1 py-4 whitespace-nowrap">123456</td>
+          <td class="px-1 py-4 whitespace-nowrap">
+            <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">View</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
     <ul>
       <div class="task-list" v-if="filter === 'all'">
         <p>You have {{ taskStore.totalCount }} uploaded files</p>

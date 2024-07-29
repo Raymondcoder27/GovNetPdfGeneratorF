@@ -1,126 +1,45 @@
 <template>
-  <main>
-    <!-- <div class="data"> -->
-    <form class="dataUploadForm" @submit.prevent="dataUpload">
-      <div class="upload">
-        <div class="template">
-          <h4>Upload Template File</h4>
-          <input
-            type="file"
-            ref="file"
-            name="file"
-            placeholder="Template File"
-          />
-        </div>
-        <br />
-        <br />
-        <div class="json">
-          <h4>Insert JSON Data</h4>
-          <!-- <input type=" " placeholder="Insert Json"> -->
-          <!-- <form class="form" @submit.prevent="handleSubmit"> -->
-          <textarea
-            type="text"
-            v-model="jsonInput"
-            placeholder="Enter JSON here..."
-          ></textarea>
-          <!-- </form> -->
-          <br />
-        </div>
-      </div>
-      <button class="submitt" type="submit">Upload</button>
-    </form>
-
-    <!-- </div> -->
-    <br />
-    <br />
-    <ul>
-      <div class="task-list" v-if="filter === 'all'">
-        <p>You have {{ taskStore.totalCount }} uploaded files</p>
-        <li class="task-list" v-for="task in taskStore.tasks" :key="task.id">
-          <TaskDetails :task="task" />
-        </li>
-      </div>
-      <div class="task-list" v-if="filter === 'favs'">
-        <p>You have {{ taskStore.favCount }} Generated PDFs.</p>
-        <li class="task-list" v-for="task in taskStore.favs" :key="task.id">
-          <!-- <TaskDetails :task="task" /> -->
-          <div class="task">
-            <h3>{{ task.title }}</h3>
-            <div class="icons">
-              <i class="material-icons" @click="taskStore.deleteTask(task.id)"
-                >delete</i
-              >
-
-              <i
-                class="material-icons"
-                @click="taskStore.toggleFav(task.id)"
-                :class="{ active: task.isFav }"
-                >favorite</i
-              >
-              <button class="preview">Preview</button>
-            </div>
-          </div>
-        </li>
-      </div>
+ <div class="main-layout flex h-screen">
+  <!-- Sidebar -->
+  <aside class="sidebar bg-white w-60 shadow-md flex flex-col pt-5">
+    <!-- Sidebar Navigation -->
+    <ul class="sidebar-nav space-y-4 px-4 mt-10">
+      <li class="nav-item">
+        <router-link
+          to="/"
+          class="nav-link"
+        >
+          Data Upload
+        </router-link>
+      </li>
+      <li class="nav-item">
+        <router-link
+          to="/uploaded-data"
+          class="nav-link"
+        >
+          Uploaded Files
+        </router-link>
+      </li>
+      <li class="nav-item">
+        <router-link
+          to="/generated-files"
+          class="nav-link"
+        >
+          Generated Files
+        </router-link>
+      </li>
     </ul>
+  </aside>
+  <!-- Main Content -->
+  <main class="main-content flex-grow p-6 bg-gray-100 overflow-y-auto">
+    <!-- Slot for injecting page content -->
+    <slot></slot>
   </main>
+</div>
+
+
+
 </template>
 
 <script setup>
-//  import Counter from '@/components/Counter.vue';
-import axios from "axios";
-// import NewTask from "@/components/NewTask.vue";
-import TaskDetails from "@/components/TaskDetails.vue";
-import { useTaskStore } from "@/stores/taskStore";
-import { ref } from "vue";
-
-const taskStore = useTaskStore();
-const filter = ref("all");
-const jsonInput = ref("");
-
-const dataUpload = async () => {
-  const fileInput = document.querySelector('input[type="file"]');
-  const file = fileInput.files[0];
-
-  if (!file) {
-    console.error("No file selected");
-    return;
-  }
-
-  const formData = new FormData();
-  formData.append("file", file);
-  formData.append("data", jsonInput.value);
-
-  try {
-    const response = await axios.post(
-      "http://localhost:8080/generate",
-      formData,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      }
-    );
-
-    console.log(response.data);
-  } catch (error) {
-    console.error(
-      "Error uploading data:",
-      error.response ? error.response.data : error.message
-    );
-  }
-};
 </script>
-
-<style scoped>
-main {
-  margin-top: 30px;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-}
-ul{
-  display: none;
-}
-</style>
-

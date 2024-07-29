@@ -1,51 +1,71 @@
 <template>
   <main>
-    <div>
-      <!-- Form to upload file and JSON data -->
-      <div class="dataUploadForm">
-        <div class="upload">
-          <div class="template">
-            <h4>Upload Template File</h4>
-            <input type="file" @change="handleFileUpload" />
-          </div>
-          <div class="json">
-            <h4>Insert JSON Data</h4>
-            <textarea
-              v-model="jsonInput"
-              placeholder="Enter JSON here..."
-            ></textarea>
-          </div>
-        </div>
-        <button class="submitt" @click="dataUpload">
-            Upload
-          </button>
-          <br>
-          <!-- Toggle Preview Button -->
-        <button v-if="pdfUrl" @click="togglePreview">
-          {{ showPreview ? 'Close Preview' : 'Show Preview' }}
-        </button>
-         <!-- Preview PDF and download link -->
-         <div v-if="showPreview" class="pdfPreview">
-          <div class="pdfContainer">
-            <iframe :src="pdfUrl" frameborder="0"></iframe>
-          </div>
-          <br>
-          <a :href="pdfUrl" class="download" download="document.pdf">Download PDF</a>
-        </div>
+    <div class="p-6 max-w-3xl mx-auto bg-gray-50 rounded-lg shadow-md">
+  <!-- Form to upload file and JSON data -->
+  <div class="dataUploadForm space-y-6">
+    <div class="upload flex flex-col space-y-4">
+      <div class="template">
+        <h4 class="text-xl font-semibold text-gray-800">Upload Template File</h4>
+        <input type="file" @change="handleFileUpload" class="w-full py-2 px-4 border border-gray-300 rounded-lg bg-white"/>
+      </div>
+      <div class="json">
+        <h4 class="text-xl font-semibold text-gray-800">Insert JSON Data</h4>
+        <textarea
+          v-model="jsonInput"
+          placeholder="Enter JSON here..."
+          class="w-full h-40 py-2 px-4 border border-gray-300 rounded-lg bg-white resize-none"
+        ></textarea>
       </div>
     </div>
+    <button
+      class=" bg-blue-500 text-white py-1 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      @click="dataUpload"
+    >
+      Upload
+    </button>
+    <!-- Toggle Preview Button -->
+    <button
+      v-if="pdfUrl"
+      @click="togglePreview"
+      class=" btn border border-black p-1 bg-gray-300 text-gray-800 py-1 rounded-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500"
+    >
+      {{ showPreview ? 'Close Preview' : 'Show Preview' }}
+    </button>
+    <!-- Preview PDF and download link -->
+    <div v-if="showPreview" class="pdfPreview space-y-4">
+      <div class="pdfContainer border border-gray-300 rounded-lg overflow-hidden">
+        <iframe :src="pdfUrl" frameborder="0" class="h-96"></iframe>
+      </div>
+      <a
+        :href="pdfUrl"
+        class="text-blue-500 hover:underline"
+        download="document.pdf"
+      >
+        Download PDF
+      </a>
+    </div>
+  </div>
+</div>
+
   </main>
 </template>
 
 <script setup>
 import { ref } from "vue";
 import { useTaskStore } from "@/stores/taskStore";
+import { useToast } from "vue-toastification"
 const showPreview = ref(false); // State to track visibility of the preview
 
 const taskStore = useTaskStore();
 const jsonInput = ref("");
 const file = ref(null);
 const pdfUrl = ref(null);
+const toast = useToast();
+
+    // const showToast = () => {
+    //   toast.success('This is a success message!');
+    // };
+
 
 function handleFileUpload(event) {
   file.value = event.target.files[0];
@@ -81,6 +101,9 @@ async function dataUpload() {
 
       // Create a URL for the Blob and set it to pdfUrl
       pdfUrl.value = URL.createObjectURL(blob);
+      jsonInput.value = ""
+      file.value = ""
+      toast.success('PDF generated successfully,   ref no:2343d!');
     } catch (error) {
       console.error("Error uploading data:", error);
     }
@@ -111,6 +134,8 @@ main {
 .pdfPreview {
   text-align: center;
   margin-top: 20px;
+  border: 1px solid black;
+  padding: 3px;
 }
 
 /* .previews{
@@ -134,7 +159,7 @@ main {
   border: none;
 }
 .download{
-  background: #fa3b10;
+  background: rgba(255, 0, 0, 0.838);
   color: white;
   text-decoration: none;
   border-radius: 4px;

@@ -1,53 +1,33 @@
 <template>
   <div>
     <header>
-      <div class="header-content">
+      <!-- <div class="header-content">
         <h4 class="title">DOCUMENT GENERATOR</h4>
-      </div>
+      </div> -->
+      <!-- <div class="bg-blue-500 text-white p-4">
+  Hello, Tailwind!
+</div> -->
       <div class="nav-bar">
         <img alt="Vue logo" class="logo" src="@/assets/logo.png" />
-        <nav class="filter">
+        <!-- <nav class="filter">
           <RouterLink to="/">Data Upload</RouterLink>
           <RouterLink to="/uploaded-data">Uploaded Data</RouterLink>
           <RouterLink to="/generated-files">Generated Files</RouterLink>
-        </nav>
+        </nav> -->
+        <div class="header-content">
+          <h4 class="title"><b>DOCUMENT GENERATOR</b></h4>
+        </div>
       </div>
     </header>
-    <aside class="sidebar bg-warning bg-light pt-5">
-      <!-- Your sidebar HTML code goes here -->
-      <ul class="sidebar-nav">
-        <li class="nav-item">
-          <router-link
-          
-            to="/"
-            class="router-link-active router-link-exact-active "
-            style="font-size: 15px"
-            >Data Upload</router-link
-          >
-        </li>
-        <br />
-        <li class="nav-item">
-          <router-link
-                       to="/uploaded-data"
-            class="btn btn-danger btn-block text-light"
-            style="font-size: 15px"
-            >Uploaded Files</router-link
-          >
-        </li>
-        <br />
-        <li class="nav-item">
-          <router-link
-                       to="/generated-files"
-            class="btn btn-danger btn-block text-light"
-            style="font-size: 15px"
-            >Generated Files</router-link
-          >
-        </li>
-      </ul>
-    </aside>
-    <RouterView />
+    <HomeView>
+      <RouterView />
+    </HomeView>
   </div>
 </template>
+
+<script setup>
+import HomeView from "./views/HomeView.vue";
+</script>
 
 <style scoped>
 nav a.router-link-exact-active {
@@ -62,6 +42,11 @@ nav a {
   display: inline-block;
   padding: 0 1rem;
   border-left: 1px solid var(--color-border);
+}
+
+aside {
+  width: 300px;
+  height: 100%;
 }
 aside ul a.router-link-exact-active {
   color: var(--color-text);
@@ -81,10 +66,10 @@ nav a:first-of-type {
   border: 0;
 }
 
-aside ul{
+aside ul {
   list-style: none;
 }
-aside ul a{
+aside ul a {
   text-decoration: none;
 }
 /* @media (min-width: 1024px) {
