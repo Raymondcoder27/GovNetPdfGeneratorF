@@ -118,7 +118,7 @@ async function dataUpload() {
 
       // alert(JSON.stringify(data))
       toast.success(
-        `PDF generated successfully,  \nref no: ${referenceNumber}!`
+        `PDF generated successfully,  \nref no: ${referenceNumber}`
       );
     } catch (error) {
       toast.error("Failed to generate PDF, \n please try again.");
