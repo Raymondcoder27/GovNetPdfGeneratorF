@@ -5,29 +5,52 @@
     <br />
     <br />
     <div class="card border rounded-lg shadow-lg">
-  <div class="card-body p-4 text-sm">
-    <table class="min-w-full divide-y divide-gray-200 bg-white table-fixed">
-      <thead class="bg-gray-100">
-        <tr>
-          <th class="px-1 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">File Name</th>
-          <th class="px-1 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Reference Number</th>
-          <th class="px-1 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-        </tr>
-      </thead>
-      <tbody class="bg-white divide-y divide-gray-200">
-        <!-- Add some rows here to test -->
-        <tr>
-          <td class="px-1 py-4 whitespace-nowrap">Sample File</td>
-          <td class="px-1 py-4 whitespace-nowrap">123456</td>
-          <td class="px-1 py-4 whitespace-nowrap">
-            <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">View</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
+      <div class="card-body p-4 text-sm bg-gray-50 rounded-lg">
+        <table
+          class="min-w-full divide-y divide-gray-200 bg-gray-50 table-fixed"
+        >
+          <thead class="bg-gray-50">
+            <tr>
+              <th
+                class="px-1 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
+                File Name
+              </th>
+              <th
+                class="px-1 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
+                Reference Number
+              </th>
+              <th
+                class="px-1 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
+                Actions
+              </th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            <!-- Add some rows here to test -->
+            <tr v-for="document in documents" :key="document.id">
+              <td class="px-1 py-4 whitespace-nowrap">{{ document.name }}</td>
+              <td class="px-1 py-4 whitespace-nowrap">{{ document.id }}</td>
+              <td class="px-1 py-4 whitespace-nowrap">
+                <!-- <button
+                  class="bg-blue-500 text-white mr-2 px-4 py-2 rounded hover:bg-blue-600"
+                >
+                  Preview
+                </button> -->
+                <button
+                @click="deleteDocument(document.id)"
+                  class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
     <ul>
       <div class="task-list" v-if="filter === 'all'">
@@ -63,49 +86,53 @@
 </template>
   
   <script setup>
-//  import Counter from '@/components/Counter.vue';
-// import axios from "axios";
-// import NewTask from "@/components/NewTask.vue";
-import TaskDetails from "@/components/TaskDetails.vue";
-import { useTaskStore } from "@/stores/taskStore";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
+import { useToast } from "vue-toastification";
 
-const taskStore = useTaskStore();
-const filter = ref("all");
-const jsonInput = ref("");
+const toast = useToast();
+const documents = ref([]);
 
-const dataUpload = async () => {
-  const fileInput = document.querySelector('input[type="file"]');
-  const file = fileInput.files[0];
 
-  if (!file) {
-    console.error("No file selected");
-    return;
-  }
-
-  const formData = new FormData();
-  formData.append("file", file);
-  formData.append("data", jsonInput.value);
-
+const fetchDocuments = async () => {
   try {
-    const response = await axios.post(
-      "http://localhost:8080/generate",
-      formData,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      }
-    );
+    const response = await fetch("http://localhost:8000/documents");
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data = await response.json();
+    documents.value = data;
+    // alert(JSON.stringify(data))
 
     console.log(response.data);
   } catch (error) {
-    console.error(
-      "Error uploading data:",
-      error.response ? error.response.data : error.message
-    );
+    console.error(console.error("Error fetching documents:", error));
   }
 };
+
+// const deleteFile = (id) => {
+//   documents.value = documents.value.filter((document) => 
+//     document.id != id)
+//     toast.success('document deleted.')
+// }
+
+const deleteDocument = async (id) => {
+    const response = await fetch(`http://localhost:8000/documents/${id}`, {
+      method: "DELETE"
+    })  
+
+    if (!response.ok){
+      console.error("Error getting document.")
+    }
+    const data = await response.json()
+    // alert(JSON.stringify(data))
+    toast.success("Document deleted.")
+    documents.value = documents.value.filter((document) => document.id != id)
+
+  }
+
+onMounted(() => {
+  fetchDocuments();
+});
 </script>
   
   <style scoped>

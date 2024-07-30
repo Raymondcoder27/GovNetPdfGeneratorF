@@ -26,7 +26,7 @@ export const useTaskStore = defineStore('taskStore', {
   },
   actions: {
     async getFiles(){
-      const res = await fetch('http://localhost:8080/generated-file')
+      const res = await fetch('http://localhost:8000/generated-file')
       const data = await res.json()
     },
     // async createDoc(task) {

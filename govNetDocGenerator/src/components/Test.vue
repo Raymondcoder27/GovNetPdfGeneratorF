@@ -1,4 +1,4 @@
- <template>
+ <!-- <template>
     <div>
       <!-- Form to upload file and JSON data -->
       <input type="file" @change="handleFileUpload" />
@@ -64,4 +64,4 @@
     }
   }
   </script>
-   -->
+   --> -->

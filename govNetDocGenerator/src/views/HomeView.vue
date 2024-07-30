@@ -25,7 +25,7 @@
           to="/generated-files"
           class="nav-link"
         >
-          Generated Files
+          Retrieve Files
         </router-link>
       </li>
     </ul>
