@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import DataUpload from '../views/DataUpload.vue'
 import GeneratedFiles from '../views/GeneratedFiles.vue'
 import UploadedData from '../views/UploadedData.vue'
-import HomeView from '../views/HomeView.vue'
+import MainLayout from '../views/MainLayout.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

@@ -19,14 +19,14 @@
         </div>
       </div>
     </header>
-    <HomeView>
+    <MainLayout>
       <RouterView />
-    </HomeView>
+    </MainLayout>
   </div>
 </template>
 
 <script setup>
-import HomeView from "./views/HomeView.vue";
+import MainLayout from "./views/MainLayout.vue";
 </script>
 
 <style scoped>

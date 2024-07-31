@@ -36,28 +36,23 @@
             text-align: left;
         }
         .footer {
-    margin-top: 40px;
-}
+            margin-top: 40px;
+        }
+        .footer .signature-container {
+            display: flex;
+            /* grid-template-columns: 1fr 2fr; */
+            /* gap: 20px; */
+            align-items: center;
+            margin-top: 20px;
+        }
+        .footer .signature-container div {
+            display: flex;
+            align-items: center;
+        }
+        .footer .signature-container div h5 {
+            margin: 0;
+        }
 
-.signatures {
-    display: flex;
-    flex-direction: column;
-}
-
-.signature-row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-
-.signature-name {
-    width: 50%;
-}
-
-.signature-line {
-    width: 50%;
-    text-align: right;
-}
 .image {
             text-align: center;
             margin: 20px 0;
@@ -107,13 +102,19 @@
     </div>
     <div class="footer">
         <p>Signature of Subscribers:</p>
-        <div class="signatures">
-            {{range .Signatures}}
-            <div class="signature-row">
-                <div class="signature-name">{{ .Name }}</div>
-                <div class="signature-line">................</div>
+        <div class="signature-container">
+            <div class="name-div">
+                <h5>Name</h5>
+                {{range .Signatures}}
+                <div>{{ .Name }}</div>
+                {{end}}
             </div>
-            {{end}}
+            <div class="signature-div">
+                <h5>Signature</h5>
+                {{range .Signatures}}
+                <p>..................</p>
+                {{end}}
+            </div>
         </div>
     </div>
     
