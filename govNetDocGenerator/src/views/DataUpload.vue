@@ -63,7 +63,7 @@
 
 <script setup>
 import { ref } from "vue";
-// import { useTaskStore } from "@/stores/taskStore";
+// import { documentStore } from "@/stores/documentStore";
 import { useToast } from "vue-toastification";
 const showPreview = ref(false); // State to track visibility of the preview
 
