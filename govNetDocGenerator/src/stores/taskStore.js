@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-export const useTaskStore = defineStore('taskStore', {
+export const useDocumentStore = defineStore('documentStore', {
   state: () => ({
     tasks: [
       {id: 1, title: "Memarts", isFav: false},
