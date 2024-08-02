@@ -5,7 +5,6 @@ export const useDocumentStore = defineStore('documentStore', {
     tasks: [
       {id: 1, title: "Memarts", isFav: false},
     ], 
-    name: 'Raymond'
   }),
   getters: {
     favs() {
