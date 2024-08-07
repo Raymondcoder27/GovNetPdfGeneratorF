@@ -36,3 +36,5 @@ export const useDocumentStore = defineStore('documentStore', {
          task.isFav = !task.isFav
     }
   })
+
+//use setup stores instead
