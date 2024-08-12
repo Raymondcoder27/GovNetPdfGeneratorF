@@ -120,6 +120,8 @@ export const useDocumentsStore = defineStore('documents', () => {
     showPreview.value = !showPreview.value;
   };
 
+
+  //return statements
   return {
     documents,
     pdfUrl,
