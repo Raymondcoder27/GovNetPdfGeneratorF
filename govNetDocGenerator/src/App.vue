@@ -2,7 +2,7 @@
   <div>
     <header>
       <!-- <div class="header-content">
-        <h4 class="title">DOCUMENT GENERATOR</h4>
+        <h4 class="title">GOVNET DOCUMENT GENERATOR</h4>
       </div> -->
       <!-- <div class="bg-blue-500 text-white p-4">
   Hello, Tailwind!
